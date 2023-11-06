@@ -7,7 +7,7 @@
     "background":{
         "service_worker": "background.js"
     },
-    "permissions": ["activeTab","scripting","clipboardRead","clipboardWrite"],
+    "permissions": ["activeTab","scripting","clipboardRead"],
     "action": {}
 
 }
