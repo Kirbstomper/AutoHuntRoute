@@ -1,14 +1,7 @@
 
 
 
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.action.setBadgeText({
-      text: "OFF",
-    });
-
-  });
-
-  function getClipboard() {
+  function selectTargets() {
 
     const huntsMap = [
         {
@@ -384,7 +377,7 @@ chrome.runtime.onInstalled.addListener(() => {
             "name": "Delta"
         },
         {
-            "id": "hunt_596 ",
+            "id": "hunt_596",
             "name": "Drifting Ea"
         },
         {
@@ -524,7 +517,7 @@ chrome.runtime.onInstalled.addListener(() => {
             "name": "Downfall Hunter"
         },
         {
-            "id": "hunt_t_596 ",
+            "id": "hunt_t_596",
             "name": "Drifting Ea"
         },
         {
@@ -831,7 +824,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
     //Do everything we care about
 
-    const hunts = input.value.split(" ")
+    const hunts = input.value.split(",")
 
     for (const h in hunts) {
         console.log(hunts[h])
@@ -855,18 +848,9 @@ chrome.runtime.onInstalled.addListener(() => {
     input.remove();
 }
 chrome.action.onClicked.addListener(async (tab) => {
-    const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
-
-    const nextState = prevState === 'ON' ? 'OFF' : 'ON'
-    await chrome.action.setBadgeText({
-        tabId: tab.id,
-        text: nextState,
-      });
-    console.log(tab.id);
-    console.log("clicked");
     chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: getClipboard
+        function: selectTargets
     })
 });
 
